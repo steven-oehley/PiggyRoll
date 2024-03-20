@@ -35,7 +35,6 @@ let totalScoreValues = [
 let playing = true;
 
 // hide image
-diceImageEl.classList.add('hidden');
 
 // function for a dice roll
 function rollDice() {
@@ -45,6 +44,7 @@ function rollDice() {
 // rolling dice functionality
 btnRollDice.addEventListener('click', () => {
   if (playing) {
+    diceImageEl.classList.toggle('hidden');
     const diceRollNum = rollDice();
     //   image path needs to be the relative path from the html document
     const diceImgToRender = `./src/images/dice-${diceRollNum}.png`;
@@ -106,6 +106,7 @@ btnHold.addEventListener('click', () => {
 });
 
 btnNewGame.addEventListener('click', () => {
+  diceImageEl.classList.toggle('hidden');
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
