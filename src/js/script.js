@@ -83,7 +83,7 @@ btnHold.addEventListener('click', () => {
     totalScoreValues[activePlayer] += currentScoreValues[activePlayer];
     totalScoresEls[activePlayer].textContent = totalScoreValues[activePlayer];
     // check if score already 100
-    if (totalScoreValues[activePlayer] >= 10) {
+    if (totalScoreValues[activePlayer] >= 100) {
       playing = false;
       document
         .querySelector(`.player--${activePlayer}`)
