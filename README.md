@@ -5,6 +5,7 @@
 PiggyRoll is a simple and fun dice rolling game implemented using HTML, CSS, and JavaScript.  
 In this game, two players take turns rolling a dice to accumulate points.
 The first player to reach a score of 100 wins the game.
+A live demo is available here - <a href="https://piggyroll.netlify.app/">PiggyRoll Demo</a>
 
 ## Game Overview 🎮
 
