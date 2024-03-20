@@ -7,8 +7,10 @@ const playerTwoSection = document.querySelector('.player--1');
 // Get player score elements
 const playerOneTotalScoreEl = document.getElementById('score--0');
 const playerTwoTotalScoreEl = document.getElementById('score--1');
-const playerOneCurrentScoreEl = document.getElementById('current--0');
-const playerTwoCurrentScoreEl = document.getElementById('current--1');
+const currentScoresEls = [
+  document.getElementById('current--0'),
+  document.getElementById('current--1'),
+];
 
 // get dice image element
 const diceImageEl = document.querySelector('.dice');
@@ -20,8 +22,10 @@ const btnHold = document.querySelector('.btn--hold');
 
 // game state for players and current scores
 let activePlayer = 0; // 0 = player 1
-let currentScorePOneValue = parseInt(playerOneCurrentScoreEl.textContent); // could also use Number() for conversion here
-let currentScorePTwoValue = parseInt(playerTwoCurrentScoreEl.textContent);
+let currentScoreValues = [
+  parseInt(currentScoresEls[0].textContent), // could also use Number() for conversion here
+  parseInt(currentScoresEls[1].textContent),
+];
 
 // hide image
 diceImageEl.classList.add('hidden');
@@ -44,26 +48,27 @@ btnRollDice.addEventListener('click', () => {
 
   if (diceRollNum !== 1) {
     // add dice score to activePlayer current score
-    activePlayer === 0
-      ? (currentScorePOneValue += diceRollNum)
-      : (currentScorePTwoValue += diceRollNum);
+    currentScoreValues[activePlayer] += diceRollNum;
 
     // display active player current score
-    activePlayer === 0
-      ? (playerOneCurrentScoreEl.textContent = currentScorePOneValue)
-      : (playerTwoCurrentScoreEl.textContent = currentScorePTwoValue);
+    currentScoresEls[activePlayer].textContent =
+      currentScoreValues[activePlayer];
   } else {
     // set active player current score to 0
-    activePlayer === 0
-      ? (currentScorePOneValue = 0)
-      : (currentScorePTwoValue = 0);
-    // display updated player score
-    activePlayer === 0
-      ? (playerOneCurrentScoreEl.textContent = currentScorePOneValue)
-      : (playerTwoCurrentScoreEl.textContent = currentScorePTwoValue);
-    // switch player
+    currentScoreValues[activePlayer] = 0;
+
+    // display active player current score
+    currentScoresEls[activePlayer].textContent =
+      currentScoreValues[activePlayer];
+
+    // switch player and change active class
     activePlayer = activePlayer === 0 ? 1 : 0;
     playerOneSection.classList.toggle('player--active');
     playerTwoSection.classList.toggle('player--active');
   }
+});
+
+btnHold.addEventListener('click', () => {
+  // add current score to score of active player
+  // check if score already 100
 });
